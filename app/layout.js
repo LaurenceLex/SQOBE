@@ -1,5 +1,6 @@
 import "./globals.css";
 import SearchBar from "./components/SearchBar";
+import { Suspense } from "react";
 
 export const metadata = {
   title: "SQOBE",
@@ -11,11 +12,15 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <header className="header">
-        <div className="logo">
-  <img src="/logo.png" alt="SQOBE Logo" height="36" />
-</div>
+          <div className="logo">
+            {/* Uses /public/logo.png */}
+            <img src="/logo.png" alt="SQOBE Logo" height="36" />
+          </div>
           <nav className="nav">
-            <SearchBar />
+            {/* useSearchParams needs Suspense */}
+            <Suspense fallback={null}>
+              <SearchBar />
+            </Suspense>
           </nav>
         </header>
 
