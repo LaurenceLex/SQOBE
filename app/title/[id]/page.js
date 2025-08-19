@@ -1,28 +1,30 @@
 import { demoMovies } from "@/app/lib/mock";
-import Link from "next/link";
 
 export default function TitlePage({ params }) {
-  const movie = demoMovies.find(m => m.id === params.id);
-  if (!movie) return <div>Not found.</div>;
+  const movie = demoMovies.find((m) => m.id === params.id);
+
+  if (!movie) return <div>Movie not found.</div>;
 
   return (
-    <div style={{display:"grid", gridTemplateColumns:"280px 1fr", gap:24, alignItems:"start"}}>
-      <div>
-        <div style={{border:"1px solid #e5e5e5", borderRadius:12, overflow:"hidden"}}>
-          <img src={movie.poster} alt={movie.title} style={{width:"100%", height:380, objectFit:"cover"}} />
-        </div>
-      </div>
-      <div>
-        <h1 style={{fontSize:24, fontWeight:700}}>{movie.title}</h1>
-        <p style={{color:"#555", marginTop:8}}>{movie.synopsis}</p>
-        <p style={{fontSize:14, color:"#777", marginTop:8}}>
-          {movie.year} • {movie.genres.join(" / ")}
-        </p>
-        <div style={{display:"flex", gap:12, marginTop:16}}>
-          <Link href={`/watch/${movie.id}`} style={{padding:"10px 16px", background:"#ff0000", color:"#fff", borderRadius:8, fontWeight:600, textDecoration:"none"}}>Play</Link>
-          <button style={{padding:"10px 16px", background:"#fff", border:"1px solid #ddd", borderRadius:8}}>+ Watchlist</button>
-        </div>
-      </div>
+    <div style={{ marginTop: 24 }}>
+      <h1>{movie.title}</h1>
+      <p className="muted">
+        {movie.year} • {movie.genre}
+      </p>
+      <img
+        src={movie.posterUrl}
+        alt={movie.title}
+        style={{
+          width: "100%",
+          maxWidth: 400,
+          borderRadius: 12,
+          margin: "16px 0"
+        }}
+      />
+      <p>{movie.description}</p>
+      <a href={`/watch/${movie.id}`} className="btn btn-primary">
+        ▶ Play
+      </a>
     </div>
   );
 }
