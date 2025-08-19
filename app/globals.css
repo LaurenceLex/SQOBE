@@ -17,10 +17,10 @@
 :root {
   --sqobe-red: #ff2a2a;
 
-  --bg: #0c1117;        /* dark navy (Prime-like) */
-  --panel: #0f1621;     /* slightly lighter for cards */
-  --fg: #e6eaf0;        /* main text */
-  --muted: #a9b3c2;     /* secondary text */
+  --bg: #0c1117;
+  --panel: #0f1621;
+  --fg: #e6eaf0;
+  --muted: #a9b3c2;
   --border: #1b2431;
   --shadow: 0 6px 20px rgba(0,0,0,.35);
 
@@ -83,16 +83,13 @@ a { color: inherit; text-decoration: none; }
   height: 72vh;
   min-height: 420px;
   max-height: 820px;
-  background-position: center right;   /* lets art breathe on the right */
-  background-size: cover;              /* cinematic fill */
+  background-position: center right;
+  background-size: cover;
   background-repeat: no-repeat;
   overflow: hidden;
 }
-
-/* If you need "show whole image (no crop)" for certain titles: add .hero--contain */
 .hero--contain { background-size: contain; background-color: #000; }
 
-/* left gradient fog like Prime */
 .hero::before {
   content: "";
   position: absolute; inset: 0;
@@ -110,7 +107,7 @@ a { color: inherit; text-decoration: none; }
   margin: 0 auto;
   padding: 0 var(--gap);
   display: flex; flex-direction: column;
-  justify-content: center;             /* center vertically like Prime */
+  justify-content: center;
   align-items: flex-start;
 }
 
@@ -129,7 +126,6 @@ a { color: inherit; text-decoration: none; }
   font-weight: 800;
   margin: 0 0 14px 0;
   text-shadow: 0 6px 28px rgba(0,0,0,.6);
-  /* Optional BankGothic branding for headlines */
   /* font-family: "BankGothic", system-ui, sans-serif; */
 }
 
@@ -182,21 +178,20 @@ a { color: inherit; text-decoration: none; }
   padding-left: 2px;
 }
 
-.row {
-  position: relative;
-}
+.row { position: relative; }
+
 .row-track {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: calc((100% - (var(--gap) * 4)) / 5);  /* 5 across on desktop */
+  grid-auto-columns: calc((100% - (var(--gap) * 4)) / 5);
   gap: var(--gap);
   overflow-x: auto;
   overscroll-behavior-x: contain;
   scroll-snap-type: x mandatory;
   padding-bottom: 6px;
-  scrollbar-width: none;      /* Firefox */
+  scrollbar-width: none;
 }
-.row-track::-webkit-scrollbar { display: none; }  /* Chrome/Safari */
+.row-track::-webkit-scrollbar { display: none; }
 
 .card {
   scroll-snap-align: start;
@@ -217,11 +212,10 @@ a { color: inherit; text-decoration: none; }
 }
 .poster img {
   width: 100%; height: 100%;
-  object-fit: cover;           /* Prime fills card */
+  object-fit: cover;
   border-bottom: 1px solid var(--border);
 }
 
-/* title under poster */
 .card-title {
   font-weight: 700;
   padding: 10px 12px 12px;
@@ -246,7 +240,6 @@ a { color: inherit; text-decoration: none; }
 .scroll-btn.left  { left: -2px; }
 .scroll-btn.right { right: -2px; }
 
-/* Optional: hide arrows when not needed (add .row--edges in JS when at ends) */
 .row--start .scroll-btn.left  { opacity: .25; pointer-events: none; }
 .row--end   .scroll-btn.right { opacity: .25; pointer-events: none; }
 
@@ -254,48 +247,15 @@ a { color: inherit; text-decoration: none; }
    Responsive
    ========================================================= */
 @media (max-width: 1200px) {
-  .row-track { grid-auto-columns: calc((100% - (var(--gap) * 3)) / 4); } /* 4 across */
+  .row-track { grid-auto-columns: calc((100% - (var(--gap) * 3)) / 4); }
 }
 @media (max-width: 900px) {
-  .row-track { grid-auto-columns: calc((100% - (var(--gap) * 2)) / 3); } /* 3 across */
+  .row-track { grid-auto-columns: calc((100% - (var(--gap) * 2)) / 3); }
   .hero { height: 64vh; }
 }
 @media (max-width: 640px) {
-  .row-track { grid-auto-columns: calc((100% - var(--gap)) / 2); }       /* 2 across */
+  .row-track { grid-auto-columns: calc((100% - var(--gap)) / 2); }
   .hero { height: 56vh; min-height: 360px; }
   .hero-actions .btn { padding: 9px 14px; font-size: 15px; }
   .section-title { font-size: 22px; }
 }
-How to use these classes (quick wiring)
-Minimal JSX/HTML structure your components should follow:
-<!-- HERO -->
-<section class="hero" style='background-image:url("/images/hero-red-horizon.jpg")'>
-  <div class="hero-inner">
-    <div class="hero-kicker">New Release</div>
-    <h1 class="hero-title">The Red Horizon</h1>
-    <p class="hero-description">A gripping war drama.</p>
-    <div class="hero-actions">
-      <a class="btn btn-primary">▶ Play</a>
-      <a class="btn btn-ghost">More Info</a>
-    </div>
-  </div>
-</section>
-
-<div class="page">
-  <!-- ROW -->
-  <section class="section row">
-    <h2 class="section-title">Recommended Movies</h2>
-
-    <button class="scroll-btn left"  aria-label="Scroll left">‹</button>
-    <button class="scroll-btn right" aria-label="Scroll right">›</button>
-
-    <div class="row-track" id="row-recommended">
-      <article class="card">
-        <div class="poster"><img src="/posters/thief.jpg" alt="Thief"></div>
-        <div class="card-title">Thief</div>
-      </article>
-
-      <!-- Repeat .card items -->
-    </div>
-  </section>
-</div>
