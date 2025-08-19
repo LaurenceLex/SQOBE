@@ -1,29 +1,38 @@
 export const demoMovies = [
   {
-    id: "demo-1",
-    title: "Red Horizon",
-    synopsis: "A daring mission above the arctic circle.",
-    year: 2024,
-    genres: ["Thriller"],
-    poster: "https://images.unsplash.com/photo-1517602302552-471fe67acf66?q=80&w=680&auto=format&fit=crop",
-    backdrop: "https://images.unsplash.com/photo-1482192505345-5655af888cc4?q=80&w=1600&auto=format&fit=crop"
-  },
-  {
-    id: "demo-2",
-    title: "Lisbon Nights",
-    synopsis: "Two strangers collide in the old city.",
+    id: "1",
+    title: "The Red Horizon",
+    description: "A gripping war drama about sacrifice and survival.",
     year: 2023,
-    genres: ["Drama","Romance"],
-    poster: "https://images.unsplash.com/photo-1528909514045-2fa4ac7a08ba?q=80&w=680&auto=format&fit=crop",
-    backdrop: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1600&auto=format&fit=crop"
+    genre: "Drama",
+    posterUrl: "https://image.tmdb.org/t/p/w500/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg",
+    videoUrl: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4"
   },
   {
-    id: "demo-3",
-    title: "Signal Lost",
-    synopsis: "A coder races to stop a global blackout.",
-    year: 2025,
-    genres: ["Sci-Fi"],
-    poster: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=680&auto=format&fit=crop",
-    backdrop: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1600&auto=format&fit=crop"
+    id: "2",
+    title: "City of Echoes",
+    description: "A noir detective story set in a futuristic city.",
+    year: 2022,
+    genre: "Thriller",
+    posterUrl: "https://image.tmdb.org/t/p/w500/7bWxAsNPv9CXHOhZbJVlj2KxgfP.jpg",
+    videoUrl: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4"
+  },
+  {
+    id: "3",
+    title: "Ocean Dreams",
+    description: "A romantic tale set against the backdrop of the sea.",
+    year: 2021,
+    genre: "Romance",
+    posterUrl: "https://image.tmdb.org/t/p/w500/5YZbUmjbMa3ClvSW1Wj3D6XGolb.jpg",
+    videoUrl: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4"
+  },
+  {
+    id: "4",
+    title: "Nightfall Rising",
+    description: "A suspenseful thriller where darkness hides more than secrets.",
+    year: 2024,
+    genre: "Suspense",
+    posterUrl: "https://image.tmdb.org/t/p/w500/8QVDXDiOGHRcAD4oM6MXjE0osSj.jpg",
+    videoUrl: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4"
   }
 ];
