@@ -136,4 +136,21 @@ img { display:block; max-width:100%; }
   .hero-overlay { padding: 24px 16px; }
   .row-title { margin-left: 16px; }
   .search { min-width: 140px; }
+.btn {
+  padding: 10px 18px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  text-decoration: none;
+  background: rgba(255,255,255,0.3);
+  color: #fff;
+}
+.btn:hover {
+  background: rgba(255,255,255,0.5);
+}
+.btn-primary {
+  background: var(--sqobe-red);
+  color: #fff;
+  font-weight: bold;
 }
