@@ -10,17 +10,20 @@ export default function SearchBar() {
   const q = params.get("q") || "";
   const genre = params.get("genre") || "All";
 
-  const update = useCallback((next) => {
-    const sp = new URLSearchParams(params.toString());
-    Object.entries(next).forEach(([k, v]) => {
-      if (!v || v === "All") sp.delete(k);
-      else sp.set(k, v);
-    });
-    router.push(`${pathname}?${sp.toString()}`);
-  }, [params, pathname, router]);
+  const update = useCallback(
+    (next) => {
+      const sp = new URLSearchParams(params.toString());
+      Object.entries(next).forEach(([k, v]) => {
+        if (!v || v === "All") sp.delete(k);
+        else sp.set(k, v);
+      });
+      router.push(`${pathname}?${sp.toString()}`);
+    },
+    [params, pathname, router]
+  );
 
   return (
-    <div style={{ display:"flex", gap:12, alignItems:"center" }}>
+    <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
       <input
         className="search"
         placeholder="Search titles…"
