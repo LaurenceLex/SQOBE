@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
         <header className="header">
           <div className="logo">
             {/* Uses /public/logo.png */}
-            <img src="/logo.png" alt="SQOBE Logo" height="36" />
+           <img src="/logo.png" alt="SQOBE Logo" height="120" />
           </div>
           <nav className="nav">
             {/* useSearchParams needs Suspense */}
