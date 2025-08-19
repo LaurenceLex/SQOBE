@@ -283,3 +283,8 @@ body {
 .scroll-btn.right {
   right: 0;
 }
+.header { display:flex; align-items:center; justify-content:space-between; padding:12px 24px; background:#fff; border-bottom:1px solid #eee; position:sticky; top:0; z-index:1000; }
+.logo { font-family:"BankGothic", Helvetica, Arial, sans-serif; font-size:24px; color:#ff0000; font-weight:bold; letter-spacing:2px; }
+.nav { display:flex; gap:12px; align-items:center; }
+.search { padding:6px 12px; border-radius:6px; border:1px solid #ccc; min-width:220px; }
+.genre-select { padding:6px; border-radius:6px; border:1px solid #ccc; }
