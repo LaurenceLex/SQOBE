@@ -1,79 +1,55 @@
-"use client";
-import { Suspense } from "react";
-import Hero from "./components/Hero";
-import Row from "./components/Row";
-import { demoMovies } from "./lib/mock";
-import { useContinueWatching } from "./lib/useContinueWatching";
-import { useWatchlist } from "./lib/useWatchlist";
-import { useSearchParams } from "next/navigation";
-
-function HomeContent() {
-  const params = useSearchParams();
-  const q = (params.get("q") || "").toLowerCase();
-  const genre = params.get("genre") || "All";
-
-  const [hero, ...rest] = demoMovies;
-  const { progress } = useContinueWatching?.() ?? { progress: {} };
-  const { ids: watchIds } = useWatchlist?.() ?? { ids: [] };
-
-  const continueMovies = demoMovies.filter((m) => {
-    const p = progress[m.id];
-    return p && p.time < p.duration;
-  });
-
-  const watchlistMovies = demoMovies.filter((m) => watchIds.includes(m.id));
-
-  const filtered = demoMovies.filter((m) => {
-    const matchesQ =
-      !q ||
-      m.title.toLowerCase().includes(q) ||
-      (m.description || "").toLowerCase().includes(q);
-    const matchesGenre =
-      genre === "All" || (m.genre || "").toLowerCase() === genre.toLowerCase();
-    return matchesQ && matchesGenre;
-  });
-
-  const isFiltering = q || (genre && genre !== "All");
-
+export default function HomePage() {
   return (
-    <div>
-      <Hero item={hero} />
+    <main>
 
-      {isFiltering ? (
-        <Row
-          title={`Search Results${genre !== "All" ? ` — ${genre}` : ""}`}
-          items={filtered}
-        />
-      ) : (
-        <>
-          {watchlistMovies.length > 0 && (
-            <Row title="Watchlist" items={watchlistMovies} />
-          )}
-          {continueMovies.length > 0 && (
-            <Row title="Continue Watching" items={continueMovies} />
-          )}
-          <Row title="Latest Releases" items={rest} />
-          <Row title="Recommended" items={demoMovies} />
-          <Row title="Action" items={demoMovies.filter(m => m.genre === "Action")} />
-          <Row title="Thriller" items={demoMovies.filter(m => m.genre === "Thriller")} />
-          <Row title="Drama" items={demoMovies.filter(m => m.genre === "Drama")} />
-          <Row title="Comedy" items={demoMovies.filter(m => m.genre === "Comedy")} />
-          <Row title="Documentary" items={demoMovies.filter(m => m.genre === "Documentary")} />
-          <Row title="Romance" items={demoMovies.filter(m => m.genre === "Romance")} />
-          <Row title="Science Fiction" items={demoMovies.filter(m => m.genre === "Science Fiction")} />
-          <Row title="Fantasy" items={demoMovies.filter(m => m.genre === "Fantasy")} />
-          <Row title="Horror" items={demoMovies.filter(m => m.genre === "Horror")} />
-          <Row title="Kids" items={demoMovies.filter(m => m.genre === "Kids")} />
-        </>
-      )}
-    </div>
-  );
-}
+      {/* Hero Section */}
+      <section
+        className="hero"
+        style={{ backgroundImage: "url(/posters/thief.jpg)" }}
+      >
+        <div className="hero-inner">
+          <h1 className="hero-title">Thief</h1>
+          <p className="hero-description">
+            A master thief gets drawn into one final job that could change
+            everything.
+          </p>
+          <div className="hero-actions">
+            <button className="btn btn-primary">▶ Play</button>
+            <button className="btn btn-ghost">ℹ Info</button>
+          </div>
+        </div>
+      </section>
 
-export default function Page() {
-  return (
-    <Suspense fallback={null}>
-      <HomeContent />
-    </Suspense>
+      {/* Movie Row */}
+      <section className="section row">
+        <h2 className="section-title">Recommended Movies</h2>
+        <button className="scroll-btn left">‹</button>
+        <button className="scroll-btn right">›</button>
+
+        <div className="row-track">
+          <article className="card">
+            <div className="poster">
+              <img src="/posters/thief.jpg" alt="Thief" />
+            </div>
+            <div className="card-title">Thief</div>
+          </article>
+
+          <article className="card">
+            <div className="poster">
+              <img src="/posters/godfather.jpg" alt="The Godfather" />
+            </div>
+            <div className="card-title">The Godfather</div>
+          </article>
+
+          <article className="card">
+            <div className="poster">
+              <img src="/posters/inception.jpg" alt="Inception" />
+            </div>
+            <div className="card-title">Inception</div>
+          </article>
+        </div>
+      </section>
+
+    </main>
   );
 }
