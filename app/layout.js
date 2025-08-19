@@ -1,34 +1,45 @@
 import "./globals.css";
-import SearchBar from "./components/SearchBar";
-import { Suspense } from "react";
 
 export const metadata = {
-  title: "SQOBE",
-  description: "Streaming reimagined",
+  title: "Streaming Layout",
+  description: "Prime-style streaming UI",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <header className="header">
-          <div className="logo">
-            {/* Uses /public/logo.png */}
-           <img src="/logo.png" alt="SQOBE Logo" height="120" />
-          </div>
-          <nav className="nav">
-            {/* useSearchParams needs Suspense */}
-            <Suspense fallback={null}>
-              <SearchBar />
-            </Suspense>
-          </nav>
-        </header>
+        {children}
 
-        <main>{children}</main>
+        {/* 👇 Global carousel scroll script */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              document.querySelectorAll('.row').forEach(row => {
+                const track = row.querySelector('.row-track');
+                const left  = row.querySelector('.scroll-btn.left');
+                const right = row.querySelector('.scroll-btn.right');
+                if (!track || !left || !right) return;
 
-        <footer className="footer">
-          © {new Date().getFullYear()} SQOBE
-        </footer>
+                const step = () => Math.max(track.clientWidth * 0.9, 320);
+
+                left.addEventListener('click',  () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
+                right.addEventListener('click', () => track.scrollBy({ left:  step(), behavior: 'smooth' }));
+
+                const updateEdges = () => {
+                  const atStart = track.scrollLeft <= 2;
+                  const atEnd = track.scrollWidth - track.clientWidth - track.scrollLeft <= 2;
+                  row.classList.toggle('row--start', atStart);
+                  row.classList.toggle('row--end',   atEnd);
+                };
+
+                track.addEventListener('scroll', updateEdges, { passive: true });
+                window.addEventListener('resize', updateEdges);
+                updateEdges();
+              });
+            `,
+          }}
+        />
       </body>
     </html>
   );
