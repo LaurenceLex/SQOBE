@@ -1,5 +1,5 @@
 "use client";
-
+import { Suspense } from "react";
 import Hero from "./components/Hero";
 import Row from "./components/Row";
 import { demoMovies } from "./lib/mock";
@@ -7,15 +7,14 @@ import { useContinueWatching } from "./lib/useContinueWatching";
 import { useWatchlist } from "./lib/useWatchlist";
 import { useSearchParams } from "next/navigation";
 
-export default function Home() {
+function HomeContent() {
   const params = useSearchParams();
   const q = (params.get("q") || "").toLowerCase();
   const genre = params.get("genre") || "All";
 
   const [hero, ...rest] = demoMovies;
-
-  const { progress } = (useContinueWatching?.() ?? { progress: {} });
-  const { ids: watchIds } = (useWatchlist?.() ?? { ids: [] });
+  const { progress } = useContinueWatching?.() ?? { progress: {} };
+  const { ids: watchIds } = useWatchlist?.() ?? { ids: [] };
 
   const continueMovies = demoMovies.filter((m) => {
     const p = progress[m.id];
@@ -29,7 +28,8 @@ export default function Home() {
       !q ||
       m.title.toLowerCase().includes(q) ||
       (m.description || "").toLowerCase().includes(q);
-    const matchesGenre = genre === "All" || (m.genre || "").toLowerCase() === genre.toLowerCase();
+    const matchesGenre =
+      genre === "All" || (m.genre || "").toLowerCase() === genre.toLowerCase();
     return matchesQ && matchesGenre;
   });
 
@@ -40,7 +40,10 @@ export default function Home() {
       <Hero item={hero} />
 
       {isFiltering ? (
-        <Row title={`Search Results${genre !== "All" ? ` — ${genre}` : ""}`} items={filtered} />
+        <Row
+          title={`Search Results${genre !== "All" ? ` — ${genre}` : ""}`}
+          items={filtered}
+        />
       ) : (
         <>
           {watchlistMovies.length > 0 && (
@@ -64,5 +67,13 @@ export default function Home() {
         </>
       )}
     </div>
+  );
+}
+
+export default function Page() {
+  return (
+    <Suspense fallback={null}>
+      <HomeContent />
+    </Suspense>
   );
 }
