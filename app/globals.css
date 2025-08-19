@@ -1,235 +1,216 @@
-/* =========================================================
+/* =========================
    Fonts
-   ========================================================= */
-@font-face {
-  font-family: "BankGothic";
+   ========================= */
+@font-face{
+  font-family:"BankGothic";
   src:
     url("/fonts/BankGothic-Medium.woff2") format("woff2"),
     url("/fonts/BankGothic-Medium.woff") format("woff");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
+  font-weight:700;
+  font-style:normal;
+  font-display:swap;
 }
 
-/* =========================================================
-   Theme
-   ========================================================= */
-:root {
-  --sqobe-red: #ff2a2a;
+/* =========================
+   Theme variables
+   ========================= */
+:root{
+  --sqobe-red:#ff2a2a;
 
-  --bg: #0c1117;
-  --panel: #0f1621;
-  --fg: #e6eaf0;
-  --muted: #a9b3c2;
-  --border: #1b2431;
-  --shadow: 0 6px 20px rgba(0,0,0,.35);
+  --bg:#0c1117;          /* page background */
+  --panel:#0f1621;       /* cards */
+  --fg:#e6eaf0;          /* text */
+  --muted:#a9b3c2;       /* secondary text */
+  --border:#1b2431;
+  --shadow:0 6px 20px rgba(0,0,0,.35);
 
-  --radius: 16px;
-  --gap: 22px;
+  --container:1400px;
+  --gap:22px;
+  --radius:14px;
+  --h2:28px;
 
-  --container: 1400px;
-  --h2: 28px;
+  /* Card sizing (adjust this if you want smaller/bigger cards) */
+  --card-w:262px;        /* desktop card width ~Prime */
 }
 
-/* =========================================================
-   Reset & base
-   ========================================================= */
-* { box-sizing: border-box; }
+/* =========================
+   Reset & Base
+   ========================= */
+*{ box-sizing:border-box; }
+html,body{
+  margin:0; padding:0;
+  background:var(--bg); color:var(--fg);
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+}
+img{ display:block; max-width:100%; height:auto; }
+a{ color:inherit; text-decoration:none; }
 
-html, body {
-  margin: 0;
-  padding: 0;
-  background: var(--bg);
-  color: var(--fg);
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+.page{
+  max-width:var(--container);
+  margin:0 auto;
+  padding:24px var(--gap);
 }
 
-img { display: block; max-width: 100%; height: auto; }
-a { color: inherit; text-decoration: none; }
-
-.page {
-  max-width: var(--container);
-  margin: 0 auto;
-  padding: 24px var(--gap);
-}
-
-/* =========================================================
+/* =========================
    Header
-   ========================================================= */
-.header {
-  position: sticky; top: 0; z-index: 1000;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 12px var(--gap);
-  background: rgba(12,17,23,.75);
-  backdrop-filter: blur(6px);
-  border-bottom: 1px solid var(--border);
+   ========================= */
+.header{
+  position:sticky; top:0; z-index:1000;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:12px var(--gap);
+  background:rgba(12,17,23,.75);
+  backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--border);
 }
-.logo img { height: 42px; width: auto; }
-.nav { display: flex; gap: 10px; align-items: center; }
-.search, .genre-select {
-  height: 36px;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  background: #0a0f16;
-  color: var(--fg);
-  padding: 6px 10px;
+.logo img{ height:42px; width:auto; }
+.nav{ display:flex; gap:10px; align-items:center; }
+.search,.genre-select{
+  height:36px; padding:6px 10px;
+  border-radius:10px; border:1px solid var(--border);
+  background:#0a0f16; color:var(--fg);
 }
 
-/* =========================================================
-   Hero (Prime-like)
-   ========================================================= */
-.hero {
-  position: relative;
-  height: 72vh;
-  min-height: 420px;
-  max-height: 820px;
-  background-position: center right;
-  background-size: cover;
-  background-repeat: no-repeat;
-  overflow: hidden;
+/* =========================
+   Hero (cinematic)
+   ========================= */
+.hero{
+  position:relative;
+  height:72vh; min-height:420px; max-height:820px;
+  background-position:center right;
+  background-size:cover; background-repeat:no-repeat;
+  overflow:hidden;
 }
-.hero--contain { background-size: contain; background-color: #000; }
+.hero--contain{ background-size:contain; background-color:#000; }
 
-.hero::before {
-  content: "";
-  position: absolute; inset: 0;
+.hero::before{
+  content:""; position:absolute; inset:0; pointer-events:none; z-index:0;
   background:
     linear-gradient(90deg, rgba(12,17,23,1) 0%, rgba(12,17,23,.85) 28%, rgba(12,17,23,.4) 55%, rgba(12,17,23,0) 72%),
     linear-gradient(180deg, rgba(12,17,23,.2) 0%, rgba(12,17,23,.65) 80%, rgba(12,17,23,.9) 100%);
-  pointer-events: none;
-  z-index: 0;
 }
 
-.hero-inner {
-  position: relative; z-index: 1;
-  height: 100%;
-  max-width: var(--container);
-  margin: 0 auto;
-  padding: 0 var(--gap);
-  display: flex; flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
+.hero-inner{
+  position:relative; z-index:1;
+  height:100%;
+  max-width:var(--container);
+  margin:0 auto; padding:0 var(--gap);
+  display:flex; flex-direction:column;
+  justify-content:center; align-items:flex-start;
 }
-
-.hero-kicker {
-  color: #ffd54a;
-  font-weight: 700;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  font-size: 13px;
-  margin-bottom: 10px;
+.hero-kicker{
+  color:#ffd54a; font-weight:700; letter-spacing:.12em;
+  text-transform:uppercase; font-size:13px; margin-bottom:10px;
 }
-
-.hero-title {
-  font-size: clamp(34px, 6vw, 68px);
-  line-height: 1.05;
-  font-weight: 800;
-  margin: 0 0 14px 0;
-  text-shadow: 0 6px 28px rgba(0,0,0,.6);
-  /* font-family: "BankGothic", system-ui, sans-serif; */
+.hero-title{
+  font-size:clamp(34px,6vw,68px); line-height:1.05;
+  font-weight:800; margin:0 0 14px;
+  text-shadow:0 6px 28px rgba(0,0,0,.6);
+  /* font-family:"BankGothic",system-ui,sans-serif; */
 }
-
-.hero-description {
-  max-width: 620px;
-  font-size: clamp(16px, 2.2vw, 20px);
-  color: var(--muted);
-  line-height: 1.45;
-  margin: 0 0 22px 0;
+.hero-description{
+  max-width:620px; margin:0 0 22px;
+  font-size:clamp(16px,2.2vw,20px); line-height:1.45; color:var(--muted);
 }
 
 /* Buttons */
-.btn {
-  display: inline-flex; align-items: center; justify-content: center;
-  gap: 8px;
-  padding: 10px 18px;
-  border-radius: 12px;
-  border: 1px solid transparent;
-  font-weight: 700;
-  font-size: 16px;
-  cursor: pointer;
-  transition: transform .12s ease, background .12s ease, border-color .12s ease;
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  padding:10px 18px; border-radius:12px; border:1px solid transparent;
+  font-weight:700; font-size:16px; cursor:pointer;
+  transition:transform .12s ease, filter .12s ease, background .12s ease;
 }
-.btn:active { transform: translateY(1px); }
+.btn:active{ transform:translateY(1px); }
+.btn-primary{ background:var(--sqobe-red); color:#fff; box-shadow:var(--shadow); }
+.btn-primary:hover{ filter:brightness(1.05); }
+.btn-ghost{ background:rgba(255,255,255,.12); color:#fff; border-color:rgba(255,255,255,.18); }
+.btn-ghost:hover{ background:rgba(255,255,255,.18); }
+.hero-actions{ display:flex; gap:12px; }
 
-.btn-primary {
-  background: var(--sqobe-red);
-  color: #fff;
-  box-shadow: var(--shadow);
-}
-.btn-primary:hover { filter: brightness(1.05); }
-
-.btn-ghost {
-  background: rgba(255,255,255,.12);
-  color: #fff;
-  border-color: rgba(255,255,255,.18);
-}
-.btn-ghost:hover { background: rgba(255,255,255,.18); }
-
-.hero-actions { display: flex; gap: 12px; }
-
-/* =========================================================
+/* =========================
    Rows (horizontal carousels)
-   ========================================================= */
-.section { margin-top: 28px; }
-.section-title {
-  font-size: var(--h2);
-  font-weight: 800;
-  margin: 0 0 14px 0;
-  padding-left: 2px;
+   ========================= */
+.section{ margin-top:28px; }
+.section-title{
+  font-size:var(--h2); font-weight:800; margin:0 0 14px; padding-left:2px;
 }
 
-.row { position: relative; }
+.row{ position:relative; }
 
-/* ==== PRIME-SIZED CARDS ==== */
-/* Control how many cards fit per row with one variable */
-:root {
-  --cards-per-row: 6;      /* was 5 — smaller cards now */
-  --gap: 22px;             /* keep spacing tidy */
+/* Fixed card width => consistent size across the row */
+.row-track{
+  display:grid;
+  grid-auto-flow:column;
+  grid-auto-columns:var(--card-w); /* single knob for card size */
+  gap:var(--gap);
+  overflow-x:auto;
+  overscroll-behavior-x:contain;
+  scroll-snap-type:x mandatory;
+  padding:4px 0 6px;
+  scrollbar-width:none;
+}
+.row-track::-webkit-scrollbar{ display:none; }
+
+.card{
+  width:100%;
+  scroll-snap-align:start;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.card:hover{ transform:translateY(-3px); }
+
+/* Force every visual to uniform 16:9 */
+.poster{
+  width:100%;
+  aspect-ratio:16/9;
+  background:#000;
+  overflow:hidden;
+}
+.poster img{
+  width:100%; height:100%;
+  object-fit:cover;   /* portrait images will crop to keep a 16:9 card */
+  display:block;
 }
 
-/* Base sizing (desktop) */
-.row-track {
-  display: grid;
-  grid-auto-flow: column;
-  /* Each card = (full width - total gaps) / cards-per-row */
-  grid-auto-columns: calc(
-    (100% - (var(--gap) * (var(--cards-per-row) - 1)))
-    / var(--cards-per-row)
-  );
-  gap: var(--gap);
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-  scroll-snap-type: x mandatory;
-  padding-bottom: 6px;
-  scrollbar-width: none;
-}
-.row-track::-webkit-scrollbar { display: none; }
-
-/* Card look tweaks to match the screenshot a bit tighter */
-.card       { border-radius: 14px; }
-.poster     { border-radius: 14px; }
-.poster img { object-fit: cover; }
-
-/* Ultra-wide screens can show 7 across */
-@media (min-width: 1600px) {
-  :root { --cards-per-row: 7; }
+.card-title{
+  font-weight:700; padding:10px 12px 12px;
+  font-size:15px; color:var(--fg);
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
 }
 
-/* Laptop */
-@media (max-width: 1200px) {
-  :root { --cards-per-row: 5; }  /* slightly larger on narrower screens */
+/* Row arrows */
+.scroll-btn{
+  position:absolute; top:50%; transform:translateY(-50%);
+  width:42px; height:42px; border-radius:50%;
+  background:rgba(255,255,255,.92); color:#222;
+  border:1px solid var(--border); box-shadow:var(--shadow);
+  cursor:pointer; display:grid; place-items:center; z-index:10;
+}
+.scroll-btn.left{ left:-2px; }
+.scroll-btn.right{ right:-2px; }
+.row--start .scroll-btn.left{ opacity:.25; pointer-events:none; }
+.row--end   .scroll-btn.right{ opacity:.25; pointer-events:none; }
+
+/* =========================
+   Footer
+   ========================= */
+.footer{
+  text-align:center; padding:16px; font-size:14px;
+  border-top:1px solid var(--border); margin-top:40px;
 }
 
-/* Tablet */
-@media (max-width: 900px) {
-  :root { --cards-per-row: 4; }
-  .hero { height: 64vh; }
-}
-
-/* Mobile */
-@media (max-width: 640px) {
-  :root { --cards-per-row: 2; }
-  .hero { height: 56vh; min-height: 360px; }
-  .hero-actions .btn { padding: 9px 14px; font-size: 15px; }
-  .section-title { font-size: 22px; }
+/* =========================
+   Responsive tweaks
+   ========================= */
+@media (min-width:1600px){ :root{ --card-w:300px; } }   /* very wide screens */
+@media (max-width:1200px){ :root{ --card-w:240px; } }   /* laptop */
+@media (max-width:900px) { :root{ --card-w:220px; } .hero{ height:64vh; } } /* tablet */
+@media (max-width:640px){
+  :root{ --card-w:calc(50vw - 28px); }                  /* ~2 across on mobile */
+  .hero{ height:56vh; min-height:360px; }
+  .hero-actions .btn{ padding:9px 14px; font-size:15px; }
+  .section-title{ font-size:22px; }
 }
