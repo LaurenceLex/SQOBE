@@ -2,24 +2,25 @@
 import Hero from "./components/Hero";
 import Row from "./components/Row";
 import { demoMovies } from "./lib/mock";
-import { useContinueWatching } from "./lib/useContinueWatching";
 
 export default function Home() {
   const [hero, ...rest] = demoMovies;
-  const { progress } = useContinueWatching?.() ?? { progress: {} };
-  const continueMovies = demoMovies.filter(m => {
-    const p = progress[m.id];
-    return p && p.time < p.duration;
-  });
 
   return (
     <div>
       <Hero item={hero} />
-      <Row title="Featured" items={rest} />
-      {continueMovies.length > 0 && (
-        <Row title="Continue Watching" items={continueMovies} />
-      )}
-      <Row title="All Movies" items={demoMovies} />
+      <Row title="Latest Releases" items={rest} />
+      <Row title="Recommended" items={demoMovies} />
+      <Row title="Action" items={demoMovies} />
+      <Row title="Thriller" items={demoMovies} />
+      <Row title="Drama" items={demoMovies} />
+      <Row title="Comedy" items={demoMovies} />
+      <Row title="Documentary" items={demoMovies} />
+      <Row title="Romance" items={demoMovies} />
+      <Row title="Science Fiction" items={demoMovies} />
+      <Row title="Fantasy" items={demoMovies} />
+      <Row title="Horror" items={demoMovies} />
+      <Row title="Kids" items={demoMovies} />
     </div>
   );
 }
