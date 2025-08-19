@@ -1,8 +1,8 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "Streaming Layout",
-  description: "Prime-style streaming UI",
+  title: "My Prime Clone",
+  description: "Streaming front page like Prime",
 };
 
 export default function RootLayout({ children }) {
@@ -11,7 +11,7 @@ export default function RootLayout({ children }) {
       <body>
         {children}
 
-        {/* 👇 Global carousel scroll script */}
+        {/* JS for scroll buttons */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -22,7 +22,6 @@ export default function RootLayout({ children }) {
                 if (!track || !left || !right) return;
 
                 const step = () => Math.max(track.clientWidth * 0.9, 320);
-
                 left.addEventListener('click',  () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
                 right.addEventListener('click', () => track.scrollBy({ left:  step(), behavior: 'smooth' }));
 
@@ -32,7 +31,6 @@ export default function RootLayout({ children }) {
                   row.classList.toggle('row--start', atStart);
                   row.classList.toggle('row--end',   atEnd);
                 };
-
                 track.addEventListener('scroll', updateEdges, { passive: true });
                 window.addEventListener('resize', updateEdges);
                 updateEdges();
