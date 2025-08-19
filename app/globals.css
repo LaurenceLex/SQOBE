@@ -1,216 +1,141 @@
-/* =========================
-   Fonts
-   ========================= */
-@font-face{
-  font-family:"BankGothic";
-  src:
-    url("/fonts/BankGothic-Medium.woff2") format("woff2"),
-    url("/fonts/BankGothic-Medium.woff") format("woff");
-  font-weight:700;
-  font-style:normal;
-  font-display:swap;
+/* =============================
+   Global Reset + Theme
+   ============================= */
+:root {
+  --sqobe-red: #ff0000;
+  --bg: #0f0f0f;
+  --fg: #ffffff;
+  --muted: #999999;
+  --border: #222222;
+  --panel: #181818;
+  --radius: 12px;
+  --shadow: 0 2px 8px rgba(0,0,0,0.4);
+  --gap: 22px;
+  --card-w: 260px; /* width of each poster card (Prime-like) */
 }
 
-/* =========================
-   Theme variables
-   ========================= */
-:root{
-  --sqobe-red:#ff2a2a;
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--bg); color: var(--fg); font-family: Arial, sans-serif; }
+a { color: inherit; text-decoration: none; }
 
-  --bg:#0c1117;          /* page background */
-  --panel:#0f1621;       /* cards */
-  --fg:#e6eaf0;          /* text */
-  --muted:#a9b3c2;       /* secondary text */
-  --border:#1b2431;
-  --shadow:0 6px 20px rgba(0,0,0,.35);
-
-  --container:1400px;
-  --gap:22px;
-  --radius:14px;
-  --h2:28px;
-
-  /* Card sizing (adjust this if you want smaller/bigger cards) */
-  --card-w:262px;        /* desktop card width ~Prime */
+/* =============================
+   Hero Section
+   ============================= */
+.hero {
+  position: relative;
+  height: 70vh;
+  min-height: 400px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
 }
-
-/* =========================
-   Reset & Base
-   ========================= */
-*{ box-sizing:border-box; }
-html,body{
-  margin:0; padding:0;
-  background:var(--bg); color:var(--fg);
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+.hero-inner {
+  width: 100%;
+  padding: 40px;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0));
 }
-img{ display:block; max-width:100%; height:auto; }
-a{ color:inherit; text-decoration:none; }
-
-.page{
-  max-width:var(--container);
-  margin:0 auto;
-  padding:24px var(--gap);
+.hero-title {
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 16px;
 }
-
-/* =========================
-   Header
-   ========================= */
-.header{
-  position:sticky; top:0; z-index:1000;
-  display:flex; align-items:center; justify-content:space-between;
-  padding:12px var(--gap);
-  background:rgba(12,17,23,.75);
-  backdrop-filter:blur(6px);
-  border-bottom:1px solid var(--border);
+.hero-description {
+  max-width: 600px;
+  margin-bottom: 20px;
+  font-size: 18px;
+  line-height: 1.4;
 }
-.logo img{ height:42px; width:auto; }
-.nav{ display:flex; gap:10px; align-items:center; }
-.search,.genre-select{
-  height:36px; padding:6px 10px;
-  border-radius:10px; border:1px solid var(--border);
-  background:#0a0f16; color:var(--fg);
+.hero-actions { display: flex; gap: 12px; }
+.btn {
+  padding: 10px 18px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  text-decoration: none;
+}
+.btn-primary { background: var(--sqobe-red); color: #fff; font-weight: bold; }
+.btn-ghost   { background: rgba(255,255,255,0.3); color: #fff; }
+
+/* =============================
+   Sections + Rows
+   ============================= */
+.section { margin-top: 32px; position: relative; }
+.section-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 6px;
 }
 
-/* =========================
-   Hero (cinematic)
-   ========================= */
-.hero{
-  position:relative;
-  height:72vh; min-height:420px; max-height:820px;
-  background-position:center right;
-  background-size:cover; background-repeat:no-repeat;
-  overflow:hidden;
+/* Horizontal row track */
+.row-track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: var(--card-w);
+  gap: var(--gap);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 6px;
+  scrollbar-width: none;
 }
-.hero--contain{ background-size:contain; background-color:#000; }
+.row-track::-webkit-scrollbar { display: none; }
 
-.hero::before{
-  content:""; position:absolute; inset:0; pointer-events:none; z-index:0;
-  background:
-    linear-gradient(90deg, rgba(12,17,23,1) 0%, rgba(12,17,23,.85) 28%, rgba(12,17,23,.4) 55%, rgba(12,17,23,0) 72%),
-    linear-gradient(180deg, rgba(12,17,23,.2) 0%, rgba(12,17,23,.65) 80%, rgba(12,17,23,.9) 100%);
+/* Card */
+.card {
+  width: 100%;
+  scroll-snap-align: start;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform .15s ease, box-shadow .15s ease;
 }
+.card:hover { transform: translateY(-3px); }
 
-.hero-inner{
-  position:relative; z-index:1;
-  height:100%;
-  max-width:var(--container);
-  margin:0 auto; padding:0 var(--gap);
-  display:flex; flex-direction:column;
-  justify-content:center; align-items:flex-start;
+/* Poster always 16:9 */
+.poster {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  overflow: hidden;
 }
-.hero-kicker{
-  color:#ffd54a; font-weight:700; letter-spacing:.12em;
-  text-transform:uppercase; font-size:13px; margin-bottom:10px;
+.poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* crops vertical posters into 16:9 */
+  display: block;
 }
-.hero-title{
-  font-size:clamp(34px,6vw,68px); line-height:1.05;
-  font-weight:800; margin:0 0 14px;
-  text-shadow:0 6px 28px rgba(0,0,0,.6);
-  /* font-family:"BankGothic",system-ui,sans-serif; */
-}
-.hero-description{
-  max-width:620px; margin:0 0 22px;
-  font-size:clamp(16px,2.2vw,20px); line-height:1.45; color:var(--muted);
-}
-
-/* Buttons */
-.btn{
-  display:inline-flex; align-items:center; justify-content:center; gap:8px;
-  padding:10px 18px; border-radius:12px; border:1px solid transparent;
-  font-weight:700; font-size:16px; cursor:pointer;
-  transition:transform .12s ease, filter .12s ease, background .12s ease;
-}
-.btn:active{ transform:translateY(1px); }
-.btn-primary{ background:var(--sqobe-red); color:#fff; box-shadow:var(--shadow); }
-.btn-primary:hover{ filter:brightness(1.05); }
-.btn-ghost{ background:rgba(255,255,255,.12); color:#fff; border-color:rgba(255,255,255,.18); }
-.btn-ghost:hover{ background:rgba(255,255,255,.18); }
-.hero-actions{ display:flex; gap:12px; }
-
-/* =========================
-   Rows (horizontal carousels)
-   ========================= */
-.section{ margin-top:28px; }
-.section-title{
-  font-size:var(--h2); font-weight:800; margin:0 0 14px; padding-left:2px;
-}
-
-.row{ position:relative; }
-
-/* Fixed card width => consistent size across the row */
-.row-track{
-  display:grid;
-  grid-auto-flow:column;
-  grid-auto-columns:var(--card-w); /* single knob for card size */
-  gap:var(--gap);
-  overflow-x:auto;
-  overscroll-behavior-x:contain;
-  scroll-snap-type:x mandatory;
-  padding:4px 0 6px;
-  scrollbar-width:none;
-}
-.row-track::-webkit-scrollbar{ display:none; }
-
-.card{
-  width:100%;
-  scroll-snap-align:start;
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  overflow:hidden;
-  box-shadow:var(--shadow);
-  transition:transform .15s ease, box-shadow .15s ease;
-}
-.card:hover{ transform:translateY(-3px); }
-
-/* Force every visual to uniform 16:9 */
-.poster{
-  width:100%;
-  aspect-ratio:16/9;
-  background:#000;
-  overflow:hidden;
-}
-.poster img{
-  width:100%; height:100%;
-  object-fit:cover;   /* portrait images will crop to keep a 16:9 card */
-  display:block;
-}
-
-.card-title{
-  font-weight:700; padding:10px 12px 12px;
-  font-size:15px; color:var(--fg);
-  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+.card-title {
+  font-weight: 600;
+  padding: 8px 12px 12px;
+  font-size: 15px;
+  color: var(--fg);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Row arrows */
-.scroll-btn{
-  position:absolute; top:50%; transform:translateY(-50%);
-  width:42px; height:42px; border-radius:50%;
-  background:rgba(255,255,255,.92); color:#222;
-  border:1px solid var(--border); box-shadow:var(--shadow);
-  cursor:pointer; display:grid; place-items:center; z-index:10;
+.scroll-btn {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 42px; height: 42px; border-radius: 50%;
+  background: rgba(255,255,255,.92); color: #222;
+  border: 1px solid var(--border); box-shadow: var(--shadow);
+  cursor: pointer; display: grid; place-items: center; z-index: 10;
 }
-.scroll-btn.left{ left:-2px; }
-.scroll-btn.right{ right:-2px; }
-.row--start .scroll-btn.left{ opacity:.25; pointer-events:none; }
-.row--end   .scroll-btn.right{ opacity:.25; pointer-events:none; }
+.scroll-btn.left  { left: -2px; }
+.scroll-btn.right { right: -2px; }
+.row--start .scroll-btn.left  { opacity: .25; pointer-events: none; }
+.row--end   .scroll-btn.right { opacity: .25; pointer-events: none; }
 
-/* =========================
-   Footer
-   ========================= */
-.footer{
-  text-align:center; padding:16px; font-size:14px;
-  border-top:1px solid var(--border); margin-top:40px;
-}
-
-/* =========================
-   Responsive tweaks
-   ========================= */
-@media (min-width:1600px){ :root{ --card-w:300px; } }   /* very wide screens */
-@media (max-width:1200px){ :root{ --card-w:240px; } }   /* laptop */
-@media (max-width:900px) { :root{ --card-w:220px; } .hero{ height:64vh; } } /* tablet */
-@media (max-width:640px){
-  :root{ --card-w:calc(50vw - 28px); }                  /* ~2 across on mobile */
-  .hero{ height:56vh; min-height:360px; }
-  .hero-actions .btn{ padding:9px 14px; font-size:15px; }
-  .section-title{ font-size:22px; }
-}
+/* Responsive tweaks */
+@media (min-width:1600px){ :root{ --card-w: 300px; } }
+@media (max-width:1200px){ :root{ --card-w: 220px; } }
+@media (max-width:900px) { :root{ --card-w: 200px; } }
+@media (max-width:640px) { :root{ --card-w: calc(50vw - 28px); } }
