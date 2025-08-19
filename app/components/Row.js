@@ -1,33 +1,35 @@
+"use client";
+import Link from "next/link";
+import { useRef } from "react";
+
 export default function Row({ title, items }) {
-  if (!items || items.length === 0) return null;
+  const rowRef = useRef(null);
+
+  const scroll = (dir) => {
+    if (rowRef.current) {
+      const scrollAmount = dir === "left" ? -400 : 400;
+      rowRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    }
+  };
 
   return (
-    <section style={{ marginBottom: "32px" }}>
-      <div className="row-title">
-        <h2 style={{ margin: 0 }}>{title}</h2>
-        <a href="/catalog" className="muted" style={{ fontSize: 14 }}>
-          View all
-        </a>
-      </div>
-      <div className="row">
-        {items.map((movie) => (
-          <a
-            key={movie.id}
-            href={`/title/${movie.id}`}
-            className="card"
-            style={{ width: 160, flex: "0 0 auto" }}
-          >
-            <img src={movie.posterUrl} alt={movie.title} />
-            <div style={{ padding: "8px" }}>
-              <div style={{ fontWeight: 600, fontSize: 14 }}>
-                {movie.title}
-              </div>
-              <div className="muted" style={{ fontSize: 12 }}>
-                {movie.year}
-              </div>
-            </div>
-          </a>
-        ))}
+    <section className="row">
+      <h2 className="row-title">{title}</h2>
+      <div className="row-wrapper">
+        <button className="scroll-btn left" onClick={() => scroll("left")}>
+          ‹
+        </button>
+        <div className="row-items" ref={rowRef}>
+          {items.map((m) => (
+            <Link key={m.id} href={`/title/${m.id}`} className="card">
+              <img src={m.posterUrl} alt={m.title} />
+              <p>{m.title}</p>
+            </Link>
+          ))}
+        </div>
+        <button className="scroll-btn right" onClick={() => scroll("right")}>
+          ›
+        </button>
       </div>
     </section>
   );
