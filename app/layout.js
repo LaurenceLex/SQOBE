@@ -11,7 +11,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <header className="header">
-          <div className="logo">SQOBE</div>
+        <div className="logo">
+  <img src="/logo.png" alt="SQOBE Logo" height="36" />
+</div>
           <nav className="nav">
             <SearchBar />
           </nav>
