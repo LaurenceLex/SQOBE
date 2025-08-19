@@ -1,81 +1,114 @@
-/* === Fonts === */
+/* =========================================================
+   Fonts
+   ========================================================= */
 @font-face {
   font-family: "BankGothic";
-  src: url("/fonts/BankGothic-Medium.woff2") format("woff2"),
-       url("/fonts/BankGothic-Medium.woff") format("woff");
+  src:
+    url("/fonts/BankGothic-Medium.woff2") format("woff2"),
+    url("/fonts/BankGothic-Medium.woff") format("woff");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 
-/* === Root theme variables === */
+/* =========================================================
+   Root theme variables
+   ========================================================= */
 :root {
-  --sqobe-red:#ff0000;
-  --bg:#ffffff;
-  --fg:#111111;
-  --muted:#666666;
-  --border:#e6e6e6;
+  --sqobe-red: #ff0000;
+  --bg: #ffffff;
+  --fg: #111111;
+  --muted: #666666;
+  --border: #e6e6e6;
 }
 
-/* === Reset === */
-* { box-sizing:border-box; }
+/* =========================================================
+   Reset & base
+   ========================================================= */
+* { box-sizing: border-box; }
+
 html, body {
-  margin:0;
-  padding:0;
-  background:var(--bg);
-  color:var(--fg);
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--fg);
   font-family: Helvetica, Arial, ui-sans-serif;
 }
-a { color:inherit; text-decoration:none; }
-img { display:block; max-width:100%; }
 
-/* === Header === */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* Optional helper */
+.row-title {
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+/* =========================================================
+   Header
+   ========================================================= */
 .header {
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:12px 24px;
-  background:#fff;
-  border-bottom:1px solid var(--border);
-  position:sticky;
-  top:0;
-  z-index:1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
+
 .logo img {
-  height:90px; /* adjust size of your logo PNG */
-  width:auto;
+  height: 90px; /* adjust size of your logo PNG */
+  width: auto;
 }
+
 .nav {
-  display:flex;
-  gap:12px;
-  align-items:center;
+  display: flex;
+  gap: 12px;
+  align-items: center;
 }
+
 .search {
-  padding:6px 12px;
-  border-radius:6px;
-  border:1px solid #ccc;
-  min-width:220px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  min-width: 220px;
 }
+
 .genre-select {
-  padding:6px;
-  border-radius:6px;
-  border:1px solid #ccc;
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
 }
 
-/* === Footer === */
+/* =========================================================
+   Footer
+   ========================================================= */
 .footer {
-  text-align:center;
-  padding:16px;
-  font-size:14px;
-  border-top:1px solid var(--border);
-  margin-top:40px;
+  text-align: center;
+  padding: 16px;
+  font-size: 14px;
+  border-top: 1px solid var(--border);
+  margin-top: 40px;
 }
 
-/* === Hero section === */
+/* =========================================================
+   Hero section
+   - Use as a background image container to show full image
+   ========================================================= */
 .hero {
   position: relative;
   height: 70vh;
-  background-size: contain;      /* ✅ show whole image */
+  background-size: contain;        /* ✅ show whole image */
   background-position: center;
   background-repeat: no-repeat;
   display: flex;
@@ -83,28 +116,48 @@ img { display:block; max-width:100%; }
   justify-content: flex-start;
   color: #fff;
 }
+
+/* If you render an <img> inside .hero instead of background, this keeps full image without cropping */
+.hero img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;             /* ✅ show whole image */
+  z-index: 0;
+}
+
 .hero-overlay {
+  position: relative;
+  z-index: 1;
   width: 100%;
   padding: 40px;
   background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0));
 }
+
 .hero-title {
   font-size: 48px;
   font-weight: bold;
   margin-bottom: 16px;
+  /* Optionally use BankGothic for headings */
+  /* font-family: "BankGothic", Helvetica, Arial, ui-sans-serif; */
 }
+
 .hero-description {
   max-width: 600px;
   margin-bottom: 20px;
   font-size: 18px;
   line-height: 1.4;
 }
+
 .hero-buttons {
   display: flex;
   gap: 12px;
 }
 
-/* === Buttons === */
+/* =========================================================
+   Buttons
+   ========================================================= */
 .btn {
   padding: 10px 18px;
   border-radius: 6px;
@@ -115,7 +168,20 @@ img { display:block; max-width:100%; }
   background: rgba(255,255,255,0.3);
   color: #fff;
 }
-.btn
+
+.btn:hover {
+  background: rgba(255,255,255,0.5);
+}
+
+.btn-primary {
+  background: var(--sqobe-red);
+  color: #fff;
+  font-weight: bold;
+}
+
+/* Dedicated scroll buttons (left/right arrows over carousels) */
+.scroll-btn {
+  position: absolute;
   top: 45%;
   transform: translateY(-50%);
   background: rgba(255,255,255,0.9);
@@ -127,30 +193,57 @@ img { display:block; max-width:100%; }
   z-index: 10;
   color: #333;
 }
+
 .scroll-btn.left  { left: 8px; }
 .scroll-btn.right { right: 8px; }
 
-/* === Small screens === */
+/* =========================================================
+   Posters & media frames (16:9, no distortion)
+   ========================================================= */
+
+/* Using <img> inside a 16:9 container */
+.poster-frame {
+  width: 100%;
+  aspect-ratio: 16 / 9;    /* modern & precise */
+  background: #000;        /* letterbox if needed */
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+.poster-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;      /* show full poster, no crop */
+}
+
+/* Using background images instead of <img> */
+.poster-bg {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain; /* show full poster */
+  background-color: #000;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* =========================================================
+   Small screens
+   ========================================================= */
 @media (max-width: 640px) {
   .hero { height: 52vh; }
   .hero-overlay { padding: 24px 16px; }
   .row-title { margin-left: 16px; }
   .search { min-width: 140px; }
-.btn {
-  padding: 10px 18px;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  text-decoration: none;
-  background: rgba(255,255,255,0.3);
-  color: #fff;
-}
-.btn:hover {
-  background: rgba(255,255,255,0.5);
-}
-.btn-primary {
-  background: var(--sqobe-red);
-  color: #fff;
-  font-weight: bold;
+
+  /* Keep buttons readable on mobile */
+  .btn {
+    font-size: 15px;
+    padding: 9px 16px;
+  }
+
+  .hero-title { font-size: 34px; }
+  .hero-description { font-size: 16px; }
 }
