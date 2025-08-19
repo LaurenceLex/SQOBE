@@ -105,3 +105,57 @@ img { display:block; max-width:100%; }
   right:16px;
   bottom:16px;
 }
+/* General layout */
+body {
+  margin: 0;
+  font-family: Helvetica, sans-serif;
+  background: #fff;
+  color: #000;
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-family: "BankGothic", sans-serif;
+  font-size: 24px;
+  color: red;
+  font-weight: bold;
+}
+
+.nav {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.search {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.genre-select {
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 16px;
+  font-size: 14px;
+  border-top: 1px solid #eee;
+  margin-top: 40px;
+}
