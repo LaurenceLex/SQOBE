@@ -1,23 +1,25 @@
-export default function Hero({ item }) {
-  if (!item) return null;
+"use client";
 
+export default function Hero({ item }) {
   return (
-    <div className="hero">
-      <img
-        src={item.posterUrl}
-        alt={item.title}
-        style={{ width: "100%", height: "auto" }}
-      />
-      <div className="hero-gradient" />
-      <div className="hero-content">
-        <h1 style={{ margin: "0 0 8px 0" }}>{item.title}</h1>
-        <p className="muted" style={{ margin: "0 0 12px 0" }}>
-          {item.description}
-        </p>
-        <a href={`/watch/${item.id}`} className="btn btn-primary">
-          ▶ Play
-        </a>
+    <section
+      className="hero"
+      style={{
+        backgroundImage: `url(${item.posterUrl})`,
+      }}
+    >
+      <div className="hero-overlay">
+        <h1 className="hero-title">{item.title}</h1>
+        <p className="hero-description">{item.description}</p>
+        <div className="hero-buttons">
+          <a href={`/watch/${item.id}`} className="btn btn-primary">
+            ▶ Play
+          </a>
+          <a href={`/title/${item.id}`} className="btn">
+            More Info
+          </a>
+        </div>
       </div>
-    </div>
+    </section>
   );
 }
