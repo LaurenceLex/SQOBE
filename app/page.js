@@ -2,6 +2,49 @@ export default function HomePage() {
   return (
     <main>
 
+      {/* ================= HEADER ================= */}
+      <header className="header">
+        <div className="logo">
+          <img src="/logo.png" alt="MyApp Logo" />
+        </div>
+
+        <nav className="nav">
+          <input className="search" type="text" placeholder="Search..." />
+          <select className="genre-select">
+            <option>All Genres</option>
+            <option>Action</option>
+            <option>Drama</option>
+            <option>Comedy</option>
+            <option>Horror</option>
+          </select>
+          <button>Account</button>
+        </nav>
+      </header>
+
+      {/* ================= HERO ================= */}
+      <section
+        className="hero"
+        style={{ backgroundImage: "url(/posters/thief.jpg)" }}
+      >
+        <div className="hero-inner">
+          <h1 className="hero-title">Thief</h1>
+          <p className="hero-description">
+            A master thief gets drawn into one final job that could change
+            everything.
+          </p>
+          <div className="hero-actions">
+            <button className="btn btn-primary">▶ Play</button>
+            <button className="btn btn-ghost">ℹ Info</button>
+          </div>
+        </div>
+      </section>
+
+      {/* ... the movie rows from before ... */}
+
+    </main>
+  );
+}
+
       {/* ================= HERO ================= */}
       <section
         className="hero"
