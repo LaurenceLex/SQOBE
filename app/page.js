@@ -1,16 +1,52 @@
 export default function HomePage() {
+  // --- sample data (replace with your real items/images) ---
+  const rows = [
+    {
+      title: "Trending Now",
+      items: [
+        { src: "/posters/inception.jpg", title: "Inception" },
+        { src: "/posters/interstellar.jpg", title: "Interstellar" },
+        { src: "/posters/joker.jpg", title: "Joker" },
+        { src: "/posters/avatar.jpg", title: "Avatar" },
+        { src: "/posters/matrix.jpg", title: "The Matrix" },
+        { src: "/posters/dune.jpg", title: "Dune" },
+      ],
+    },
+    {
+      title: "New Releases",
+      items: [
+        { src: "/posters/batman.jpg", title: "The Batman" },
+        { src: "/posters/spiderman.jpg", title: "Spider-Man" },
+        { src: "/posters/oppenheimer.jpg", title: "Oppenheimer" },
+        { src: "/posters/barbie.jpg", title: "Barbie" },
+        { src: "/posters/maverick.jpg", title: "Top Gun: Maverick" },
+        { src: "/posters/guardians.jpg", title: "Guardians" },
+      ],
+    },
+    {
+      title: "Classics",
+      items: [
+        { src: "/posters/godfather.jpg", title: "The Godfather" },
+        { src: "/posters/casablanca.jpg", title: "Casablanca" },
+        { src: "/posters/pulpfiction.jpg", title: "Pulp Fiction" },
+        { src: "/posters/shawshank.jpg", title: "Shawshank" },
+        { src: "/posters/lotr.jpg", title: "LOTR" },
+        { src: "/posters/starwars.jpg", title: "Star Wars" },
+      ],
+    },
+  ];
+
   return (
     <main>
-
-      {/* ================= HEADER ================= */}
+      {/* ===== Header (logo + search + genre + account) ===== */}
       <header className="header">
         <div className="logo">
-          <img src="/logo.png" alt="MyApp Logo" />
+          <img src="/logo.png" alt="App Logo" />
         </div>
 
         <nav className="nav">
           <input className="search" type="text" placeholder="Search..." />
-          <select className="genre-select">
+          <select className="genre-select" defaultValue="All Genres">
             <option>All Genres</option>
             <option>Action</option>
             <option>Drama</option>
@@ -21,150 +57,50 @@ export default function HomePage() {
         </nav>
       </header>
 
-      {/* ================= HERO ================= */}
+      {/* ===== Hero ===== */}
       <section
         className="hero"
         style={{ backgroundImage: "url(/posters/thief.jpg)" }}
       >
         <div className="hero-inner">
+          <div className="hero-kicker">Exclusive</div>
           <h1 className="hero-title">Thief</h1>
           <p className="hero-description">
-            A master thief gets drawn into one final job that could change
+            A master thief is drawn into one final job that could change
             everything.
           </p>
           <div className="hero-actions">
             <button className="btn btn-primary">▶ Play</button>
-            <button className="btn btn-ghost">ℹ Info</button>
+            <button className="btn btn-ghost">More Info</button>
           </div>
         </div>
       </section>
 
-      {/* ... the movie rows from before ... */}
+      {/* ===== Rows ===== */}
+      {rows.map((row) => (
+        <section className="section row" key={row.title}>
+          <h2 className="section-title">{row.title}</h2>
 
-    </main>
-  );
-}
+          {/* arrows (JS for click is injected globally in app/layout.js) */}
+          <button className="scroll-btn left" aria-label="Scroll left">
+            ‹
+          </button>
+          <button className="scroll-btn right" aria-label="Scroll right">
+            ›
+          </button>
 
-      {/* ================= HERO ================= */}
-      <section
-        className="hero"
-        style={{ backgroundImage: "url(/posters/thief.jpg)" }}
-      >
-        <div className="hero-inner">
-          <h1 className="hero-title">Thief</h1>
-          <p className="hero-description">
-            A master thief gets drawn into one final job that could change
-            everything.
-          </p>
-          <div className="hero-actions">
-            <button className="btn btn-primary">▶ Play</button>
-            <button className="btn btn-ghost">ℹ Info</button>
+          <div className="row-track">
+            {row.items.map((item) => (
+              <article className="card" key={item.title}>
+                <div className="poster">
+                  <img src={item.src} alt={item.title} />
+                </div>
+                <div className="card-title">{item.title}</div>
+              </article>
+            ))}
           </div>
-        </div>
-      </section>
-
-      {/* ================= ROW 1 ================= */}
-      <section className="section row">
-        <h2 className="section-title">Trending Now</h2>
-        <button className="scroll-btn left">‹</button>
-        <button className="scroll-btn right">›</button>
-
-        <div className="row-track">
-          <article className="card">
-            <div className="poster"><img src="/posters/inception.jpg" alt="Inception" /></div>
-            <div className="card-title">Inception</div>
-          </article>
-          <article className="card">
-            <div className="poster"><img src="/posters/interstellar.jpg" alt="Interstellar" /></div>
-            <div className="card-title">Interstellar</div>
-          </article>
-          <article className="card">
-            <div className="poster"><img src="/posters/joker.jpg" alt="Joker" /></div>
-            <div className="card-title">Joker</div>
-          </article>
-          <article className="card">
-            <div className="poster"><img src="/posters/avatar.jpg" alt="Avatar" /></div>
-            <div className="card-title">Avatar</div>
-          </article>
-          <article className="card">
-            <div className="poster"><img src="/posters/matrix.jpg" alt="The Matrix" /></div>
-            <div className="card-title">The Matrix</div>
-          </article>
-          <article className="card">
-            <div className="poster"><img src="/posters/dune.jpg" alt="Dune" /></div>
-            <div className="card-title">Dune</div>
-          </article>
-        </div>
-      </section>
-
-      {/* ================= ROW 2 ================= */}
-      <section className="section row">
-        <h2 className="section-title">New Releases</h2>
-        <button className="scroll-btn left">‹</button>
-        <button className="scroll-btn right">›</button>
-
-        <div className="row-track">
-          <article className="card">
-            <div className="poster"><img src="/posters/batman.jpg" alt="The Batman" /></div>
-            <div className="card-title">The Batman</div>
-          </article>
-          <article className="card">
-            <div className="poster"><img src="/posters/spiderman.jpg" alt="Spider-Man" /></div>
-            <div className="card-title">Spider-Man</div>
-          </article>
-          <article className="card">
-            <div className="poster"><img src="/posters/oppenheimer.jpg" alt="Oppenheimer" /></div>
-            <div className="card-title">Oppenheimer</div>
-          </article>
-          <article className="card">
-            <div className="poster"><img src="/posters/barbie.jpg" alt="Barbie" /></div>
-            <div className="card-title">Barbie</div>
-          </article>
-          <article className="card">
-            <div className="poster"><img src="/posters/maverick.jpg" alt="Top Gun: Maverick" /></div>
-            <div className="card-title">Top Gun: Maverick</div>
-          </article>
-          <article className="card">
-            <div className="poster"><img src="/posters/guardians.jpg" alt="Guardians of the Galaxy" /></div>
-            <div className="card-title">Guardians</div>
-          </article>
-        </div>
-      </section>
-
-      {/* ================= ROW 3 ================= */}
-      <section className="section row">
-        <h2 className="section-title">Classics</h2>
-        <button className="scroll-btn left">‹</button>
-        <button className="scroll-btn right">›</button>
-
-        <div className="row-track">
-          <article className="card">
-            <div className="poster"><img src="/posters/godfather.jpg" alt="The Godfather" /></div>
-            <div className="card-title">The Godfather</div>
-          </article>
-          <article className="card">
-            <div className="poster"><img src="/posters/casablanca.jpg" alt="Casablanca" /></div>
-            <div className="card-title">Casablanca</div>
-          </article>
-          <article className="card">
-            <div className="poster"><img src="/posters/pulpfiction.jpg" alt="Pulp Fiction" /></div>
-            <div className="card-title">Pulp Fiction</div>
-          </article>
-          <article className="card">
-            <div className="poster"><img src="/posters/shawshank.jpg" alt="Shawshank Redemption" /></div>
-            <div className="card-title">Shawshank</div>
-          </article>
-          <article className="card">
-            <div className="poster"><img src="/posters/lotr.jpg" alt="The Lord of the Rings" /></div>
-            <div className="card-title">LOTR</div>
-          </article>
-          <article className="card">
-            <div className="poster"><img src="/posters/starwars.jpg" alt="Star Wars" /></div>
-            <div className="card-title">Star Wars</div>
-          </article>
-        </div>
-      </section>
-
+        </section>
+      ))}
     </main>
   );
 }
