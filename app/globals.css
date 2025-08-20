@@ -19,6 +19,50 @@ html, body { background: var(--bg); color: var(--fg); font-family: Arial, sans-s
 a { color: inherit; text-decoration: none; }
 
 /* =============================
+   Header (Logo + Nav)
+   ============================= */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  background: #000;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo img {
+  height: 44px; /* logo height */
+  width: auto;
+}
+
+.nav {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.nav button,
+.nav select,
+.nav input {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--fg);
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.search {
+  min-width: 200px;
+}
+.genre-select {
+  min-width: 120px;
+}
+/* =============================
    Hero Section
    ============================= */
 .hero {
